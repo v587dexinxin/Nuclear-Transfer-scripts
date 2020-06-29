@@ -1,0 +1,10 @@
+a <- read.table('/public/home/xxli/data/BDF1_New/Klf4/literature/cHiC/workspace_new/chicago/cHiC_mESC_serum_cutoff3.bedpe', header = TRUE)
+pdf('/public/home/xxli/data/BDF1_New/Klf4/literature/cHiC/workspace_new/plot/cHiC_mESC_serum_cutoff3.pdf')
+pbpe = plotBedpe(a,chrom,chromstart,chromend,
+                 heights = a$score,plottype="loops",
+				 color = 'blue')
+legend("topright",inset =0.01,legend=c("serum"),col='blue',pch=19,bty='n',text.font=2)
+axis(side=2,las=2,tcl=.2)
+mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
+axis(side=1, las=2,tcl=.2, line=0.5, at = c(55475323,55475946,55477350,55477781,55478034,55478167,55480544,55480787,55514784,55515169,55526494,55526717,55527137,55532475), labels = c('1','1','2','2','3','3','4','4','5','5','6','6','K','K'))
+dev.off()
