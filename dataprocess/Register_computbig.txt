@@ -1,1 +1,0 @@
-qsub -I -d ./ -q big -l nodes=comput54:ppn=1
