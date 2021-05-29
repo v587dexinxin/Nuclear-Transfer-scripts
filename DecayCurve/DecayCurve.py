@@ -7,7 +7,7 @@ Created on Mon Nov 04 10:31:56 2019
 
 from __future__ import division
 import numpy as np
-import sys, cPickle
+import sys
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -22,16 +22,18 @@ def run_Plot(fig , OutFile):
     
     
     # load HiC data
-CCS = 'H:\\Workspace_New\\data\\HiC\\Matrix\\Matrix_40K\\sparse\\Corrected_CCS_40K.npz'
+CCS = 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Cooler_to_Matrix\\sparse\\spase_40K\\Corrected_CCS_40K.npz'
 CCS = np.load(CCS)
-NT5 = 'H:\\Workspace_New\\data\\HiC\\Matrix\\Matrix_40K\\sparse\\Corrected_NT5_40K.npz'
+NT5 = 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Cooler_to_Matrix\\sparse\\spase_40K\\Corrected_NT5_40K.npz'
 NT5 = np.load(NT5)
-NT6 = 'H:\\Workspace_New\\data\\HiC\\Matrix\\Matrix_40K\\sparse\\Corrected_NT6_40K.npz'
+NT6 = 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Cooler_to_Matrix\\sparse\\spase_40K\\Corrected_NT6_40K.npz'
 NT6 = np.load(NT6)
-fESC = 'H:\\Workspace_New\\data\\HiC\\Matrix\\Matrix_40K\\sparse\\Corrected_fESC_40K.npz'
+fESC = 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Cooler_to_Matrix\\sparse\\spase_40K\\Corrected_fESC_40K.npz'
 fESC = np.load(fESC)
-HiCLib = {'CCS':CCS , 'NT5':NT5 , 'NT6':NT6 , 'fESC':fESC}
-cell = ['CCS' , 'NT5' , 'NT6' ,'fESC']
+F35 = 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Cooler_to_Matrix\\sparse\\spase_40K\\Corrected_F35_40K.npz'
+F35 = np.load(F35)
+HiCLib = {'CCS':CCS , 'NT5':NT5 , 'NT6':NT6 , 'fESC':fESC , 'F35':F35}
+cell = ['CCS' , 'NT5' , 'NT6' ,'fESC' , 'F35']
 
     #resolution
 Res = 40000
@@ -55,7 +57,7 @@ def distance_contact(HiClib):
             mask = (Matrix['bin2'] - Matrix['bin1']) == i
             IF = Matrix[mask]['IF'].mean()
             distance_contact[i] += [IF]
-        print "chromosome %s is done" % g
+        print ("chromosome %s is done" % g)
     for dis,value in distance_contact.items():
         distance_contact[dis] = np.array(value).mean()
     return distance_contact
@@ -76,7 +78,8 @@ ax = fig.add_axes(size_axes)
 ax.plot(range(2,250), data[0][1:] / sum(data[0][1:]), label = 'CCS')
 ax.plot(range(2,250), data[1][1:] / sum(data[1][1:]), label = 'NT5')
 ax.plot(range(2,250), data[2][1:] / sum(data[2][1:]), label = 'NT6')
-ax.plot(range(2,250), data[3][1:] / sum(data[3][1:]), label = 'fESC')
+ax.plot(range(2,250), data[3][1:] / sum(data[3][1:]), label = 'F40')
+ax.plot(range(2,250), data[4][1:] / sum(data[4][1:]), label = 'F35')
 
 #ax.set_xticks(chrlen)
 #ax.set_xticklabels(chromosome)
@@ -87,9 +90,9 @@ ax.set_xlabel('Distance(40Kb)')
 ax.set_ylabel('Contact frequency')
 ax.legend()
 
-#plt.xscale('log')
+plt.xscale('log')
 plt.yscale('log')
 
-run_Plot(fig , 'D:\\ntESC_3Dreprogramming\\Figures\Plot\\S4_figs\\DecayCurve_all_chrom_normalization.pdf')
+run_Plot(fig , 'F:\\work\\ntESC_3Dreprogramming\\Workspace_New\\data\\HiC\\Decaycurve\\DecayCurve_all_chrom_normalization.pdf')
 
 
