@@ -1,9 +1,0 @@
-library('DESeq2')
-directory <- 'H:/Workspace_New/data/IPSC_ATAC/RNA/gene_expression/FPKM'
-sampleFiles <- c("CCS_R1.txt" , "CCS_R2.txt" , "MEF_R1.txt" , "MEF_R2.txt")
-sampleCondition <- c('CCS' , 'CCS' , 'MEF' , 'MEF')
-sampleTable <- data.frame(sampleNames = sampleFiles , fileName = sampleFiles , condition = sampleCondition)
-ddsHTseq1 <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable , directory = directory , design = ~ condition , ignoreRank = FALSE)
-dds1 <- DESeq(ddsHTseq1)
-res <- results(dds1)
-res <- res[order(res$padj),]
