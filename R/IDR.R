@@ -25,7 +25,7 @@ write.table(fESC.selected$x,'F:/work/ntESC_3Dreprogramming/Workspace_New/data/AT
 CCS.selected = select.IDR(CCS_M,fESC_out$IDR,0.01)
 NT5.selected = select.IDR(NT5_M,fESC_out$IDR,0.01)
 NT6.selected = select.IDR(NT6_M,fESC_out$IDR,0.01)
-F35.selected = select.IDR(F35_M,fESC_out$IDR,0.05)
+F35.selected = select.IDR(F35_M,fESC_out$IDR,0.01)
 F40.selected = select.IDR(F40_M,fESC_out$IDR,0.001)
 
 
@@ -33,7 +33,7 @@ F40.selected = select.IDR(F40_M,fESC_out$IDR,0.001)
 
 
 
-##------------------NTs¡¢fESC---------------------------
+##------------------NTsÂ¡Â¢fESC---------------------------
 
 mu <- 2.6
 sigma <- 1.3
